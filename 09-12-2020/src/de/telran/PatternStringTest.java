@@ -10,9 +10,7 @@ class PatternStringTest extends PatternString {
     @Test
     void testSearchPattern_True() {
 
-        assertFalse(str.searchPattern("hello", "len"));
         assertTrue(str.searchPattern("hello", ""));
-
         assertTrue(str.searchPattern("hello", "hll"));
         assertTrue(str.searchPattern("krankenkasse", "knk"));
 
