@@ -21,7 +21,7 @@ public class MaxTrees {
             if (max < intervalQueue.size())
                 max = intervalQueue.size();
         }
-        System.out.println(intervalQueue.toString());
+        // System.out.println(intervalQueue.toString());
         return max;
     }
 
@@ -29,23 +29,19 @@ public class MaxTrees {
         ArrayList<Double> cutRadian = new ArrayList<>();
 
         for (Point point : pointList) {
-        if (point.y>=0 && point.x>=0)
-            cutRadian.add(Math.atan2(point.y, point.x));
-        else if(point.x<0 && point.y>=0)
-            cutRadian.add(-Math.atan2(point.y, point.x)+(Math.PI/2));
-        else if (point.x<=0 && point.y<0)
-            cutRadian.add(Math.atan2(point.y, point.x)+Math.PI);
-        else
-            cutRadian.add(-Math.atan2(point.y, point.x)+(Math.PI/2+Math.PI));
+            if (point.y >= 0)
+                cutRadian.add(Math.atan2(point.y, point.x));
+            else if (point.y < 0)
+                cutRadian.add((Math.PI * 2) - Math.abs(Math.atan2(point.y, point.x)));
         }
         Collections.sort(cutRadian);
 
-        int i=0;
+        int i = 0;
         do {
-            cutRadian.add(cutRadian.get(i)+(Math.PI*2));
+            cutRadian.add(cutRadian.get(i) + (Math.PI * 2));
             i++;
-        } while (cutRadian.get(i)<=alpha);
-        //System.out.println(cutRadian.size());
+        } while (cutRadian.get(i) <= alpha);
+
         return cutRadian;
     }
 }
