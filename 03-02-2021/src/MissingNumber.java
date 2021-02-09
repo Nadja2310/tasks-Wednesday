@@ -8,6 +8,7 @@ public class MissingNumber {
             sum += list.get(i);
         }
 //(n*(n+1)/2
+        endNumber++;
         return (endNumber * (endNumber + 1)) / 2 - sum;
     }
 }
