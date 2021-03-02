@@ -13,7 +13,7 @@ class SolutionCutTest {
 
 
     @org.junit.jupiter.api.Test
-    void test_regular() {
+    void test_regular1() {
         Cut cut1 = new Cut(1, 5);
         Cut cut2 = new Cut(2, 5);
         Cut cut3 = new Cut(3, 5);
@@ -39,6 +39,26 @@ class SolutionCutTest {
         for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
             assertEquals(2, entry.getKey());
             assertEquals(0, entry.getValue());
+        }
+    }
+
+    @org.junit.jupiter.api.Test
+    void test_regular3() {
+        List<Integer> numbers = Arrays.asList(2, 5, 8, 10, 11, 14);
+        Cut cut1 = new Cut(1, 5);
+        Cut cut2 = new Cut(2, 5);
+        Cut cut3 = new Cut(5, 8);
+        Cut cut4 = new Cut(8, 11);
+
+        List<Cut> listCuts = Arrays.asList(cut1, cut2, cut3, cut4);
+        Map<Integer, Integer> map = solt.solt(listCuts, numbers);
+        List<Integer> expectedValue = Arrays.asList(2, 3, 2, 1, 1, 0);
+
+        int i = 0;
+        for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
+            assertEquals(numbers.get(i), entry.getKey());
+            assertEquals(expectedValue.get(i), entry.getValue());
+            i++;
         }
     }
 }
