@@ -3,16 +3,9 @@ import java.util.*;
 public class SolutionCut {
     public Map<Integer, Integer> solt(List<Cut> cuts, List<Integer> numbers) {
         Map<Integer, Integer> output = new HashMap<>();
-        List<Point> points = new ArrayList<>();
-        for (Cut elt : cuts) {
-            points.add(new Point(elt.left, Pointkind.BEGIN));
-            points.add(new Point(elt.right, Pointkind.END));
-        }
 
-        for (Integer elt : numbers) {
-            points.add(new Point(elt, Pointkind.POINT));
-        }
         PointComporator pointComporator = new PointComporator();
+        List<Point> points = collectListPointsandCuts(cuts, numbers);
         Collections.sort(points, pointComporator);
         int count = 0;
         for (Point elt : points) {
@@ -24,6 +17,19 @@ public class SolutionCut {
                 output.put(elt.getValue(), count);
         }
         return output;
+    }
+
+    private List<Point> collectListPointsAndCuts(List<Cut> cuts, List<Integer> numbers) {
+        List<Point> points = new ArrayList<>();
+        for (Cut elt : cuts) {
+            points.add(new Point(elt.left, Pointkind.BEGIN));
+            points.add(new Point(elt.right, Pointkind.END));
+        }
+
+        for (Integer elt : numbers) {
+            points.add(new Point(elt, Pointkind.POINT));
+        }
+        return points;
     }
 
     public Map<Integer, Integer> solt1(List<Cut> cuts, List<Integer> numbers) {
